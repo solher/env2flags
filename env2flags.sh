@@ -14,8 +14,10 @@ do
 
     if $env;
     then
+        value=$(eval "echo \$$arg")
+        if [ "$value" == "" ]; then continue; fi
         flag=$(printf $arg | sed 's/_/./g' | awk '{printf "%s", tolower($0)}')
-        flags="$flags-$flag=$(eval "echo \$$arg") "
+        flags="$flags-$flag=$value "
     else
         commands="$commands$arg "
     fi
