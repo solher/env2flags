@@ -15,7 +15,7 @@ do
     if $env;
     then
         flag=$(printf $arg | sed 's/_/./g' | awk '{printf "%s", tolower($0)}')
-        flags="$flags-$flag=${!arg} "
+        flags="$flags-$flag=$(eval "echo \$$arg") "
     else
         commands="$commands$arg "
     fi
